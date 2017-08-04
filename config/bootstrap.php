@@ -13,6 +13,13 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
+try {
+    $dotenv = new Dotenv\Dotenv(dirname(__DIR__));
+    $dotenv->load();
+} catch ( Exception $e) {
+
+}
+
 // You can remove this if you are confident that your PHP version is sufficient.
 if (version_compare(PHP_VERSION, '5.6.0') < 0) {
     trigger_error('Your PHP version must be equal or higher than 5.6.0 to use CakePHP.', E_USER_ERROR);
@@ -220,3 +227,6 @@ Type::build('timestamp')
 if (Configure::read('debug')) {
     Plugin::load('DebugKit', ['bootstrap' => true]);
 }
+
+Configure::load('facebook');
+Configure::load('twilio');
