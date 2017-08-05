@@ -6,6 +6,7 @@ use Aura\Intl\Exception;
 use Cake\Core\Configure;
 use Cake\Log\Log;
 use Facebook\Facebook;
+use Twilio\Rest\Client;
 
 /**
  * Apis Controller
@@ -58,5 +59,19 @@ class ApisController extends AppController
         Log::debug(json_encode($request));
         $this->response = $this->response->withStringBody('OK');
         return $this->response;
+    }
+
+    public function sendSms() {
+        if (Configure::read('Twilio.sendSmsEnabled')) {
+            $client = new Client(Configure::read('Twilio.accountSid'), Configure::read('Twilio.authToken'));
+            $sms = $client->account->messages->create(
+                '+1 256-567-5764',
+                array(
+                    'from' => Configure::read('Twilio.messagingSid'),
+                    'body' => "Hey Test, Monkey Party at 6PM. Bring Bananas!"
+                )
+            );
+            debug($sms); exit;
+        }
     }
 }
