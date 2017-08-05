@@ -1,6 +1,8 @@
 # Web API Demo
 A demo for web api session for Palestine Tech Meetups, August 5th, 2017.
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 ## Installation
 
 1. Download [Composer](http://getcomposer.org/doc/00-intro.md) or update `composer self-update`.
@@ -31,4 +33,9 @@ You can also copy the `.env.example` to `.env` and fill in the require details. 
 ## Read More
 
 [Facebook Docs](https://developers.facebook.com/docs/)
+
 [Twilio Docs](https://www.twilio.com/docs)
+
+## Notes
+
+*  This Application was made for testing and demo purposes only; Many optimisations and security enhancements

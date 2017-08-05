@@ -1,0 +1,39 @@
+{
+  "name": "Web Api Demo",
+  "description": "A demo for web api session for Palestine Tech Meetups, August 5th, 2017.",
+  "keywords": [
+    "API",
+    "Demo"
+  ],
+  "repository": "https://github.com/zalsader/web-api-demo",
+  "env": {
+    "DEBUG" : {
+      "description": "Use debug mode",
+      "value": "false"
+    },
+    "FB_SECRET": {
+      "description": "Facebook App Secret",
+      "value": "SuperSecret"
+    },
+    "FB_APP_ID": {
+      "description": "Facebook App Id",
+      "value": "SomeAppId"
+    },
+    "TWILIO_AUTH_TOKEN": {
+      "description": "Twilio Auth Token",
+      "value": "SecretToken"
+    },
+    "TWILIO_ACCOUNT_SID": {
+      "description": "Twilio Account Sid",
+      "value": "AccountId"
+    },
+    "TWILIO_MESSAGING_SID": {
+      "description": "Twilio Messaging Service Sid or From Phone Number",
+      "value": "MessagingServiceIdOrPhoneNumber"
+    },
+    "TO_PHONE": {
+      "description": "Default To Phone Number",
+      "value": "SomeToPhoneNumber"
+    }
+  }
+}
