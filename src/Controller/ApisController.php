@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Aura\Intl\Exception;
 use Cake\Core\Configure;
+use Cake\Log\Log;
 use Facebook\Facebook;
 
 /**
@@ -42,6 +43,18 @@ class ApisController extends AppController
             } catch (Exception $e) {
 
             }
+        }
+    }
+
+    public function subscribe()
+    {
+        if ($this->request->is('get')) {
+            if ($this->request->getQuery('hub_mode') == 'subscribe' && $this->request->getQuery('hub_verify_token')) {
+                $this->response = $this->response->withStringBody($this->request->getQuery('hub_challenge'));
+            }
+        } else {
+            $request = $this->request->input('json_decode');
+            Log::debug(json_encode($request));
         }
     }
 }
