@@ -10,6 +10,6 @@ return [
         'secret' => env('FB_SECRET', ''),
         'appId' => env('FB_APP_ID', ''),
         'version' => 'v2.10',
-        'scope' => 'public_profile,email,publish_actions',
+        'scope' => 'public_profile,email,publish_actions,user_photos,user_posts',
     ]
 ];
