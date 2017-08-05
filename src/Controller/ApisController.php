@@ -51,10 +51,12 @@ class ApisController extends AppController
         if ($this->request->is('get')) {
             if ($this->request->getQuery('hub_mode') == 'subscribe' && $this->request->getQuery('hub_verify_token')) {
                 $this->response = $this->response->withStringBody($this->request->getQuery('hub_challenge'));
+                return $this->response;
             }
-        } else {
-            $request = $this->request->input('json_decode');
-            Log::debug(json_encode($request));
         }
+        $request = $this->request->input('json_decode');
+        Log::debug(json_encode($request));
+        $this->response = $this->response->withStringBody('OK');
+        return $this->response;
     }
 }
