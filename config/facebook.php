@@ -8,7 +8,7 @@
 return [
     'Facebook' => [
         'secret' => env('FB_SECRET', ''),
-        'appId' => '108757106465617',
+        'appId' => env('FB_APP_ID', ''),
         'version' => 'v2.10',
         'scope' => 'public_profile,email,publish_actions',
     ]
