@@ -58,35 +58,16 @@ class ApisController extends AppController
         }
         $request = $this->request->input('json_decode');
         Log::debug(json_encode($request));
-        foreach ($request['entry'] as $entry) {
-            $userId = $entry['uid'];
-            $userName = $this->getUserName($userId);
-            foreach ($entry['changes'] as $change) {
-                if ($change['field'] == 'status') {
-                    $message = "Your friend $userName changed his ststus to: " . $change['value'];
-                    $this->sendSms('+1 256-567-5764', $message);
+        foreach ($request->entry as $entry) {
+            foreach ($entry->changes as $change) {
+                if ($change->field == 'status') {
+                    $message = "You changed your status to: " . $change->value;
+                    $this->sendSms(Configure::read('Twilio.toPhone'), $message);
                 }
             }
         }
         $this->response = $this->response->withStringBody('OK');
         return $this->response;
-    }
-
-    private function getUserName($userId) {
-        $fb = new Facebook([
-            'app_id' => Configure::read('Facebook.appId'),
-            'app_secret' => Configure::read('Facebook.secret'),
-            'default_graph_version' => Configure::read('version'),
-            'default_access_token' => $this->request->getData('fbtoken'),
-        ]);
-
-        try {
-            $response = $fb->get('/me?fields=id,name');
-            $userNode = $response->getGraphUser();
-            return $userNode->getName();
-        } catch (Exception $e) {
-            return 'Unknown';
-        }
     }
 
     private function sendSms($to, $message) {
@@ -102,7 +83,7 @@ class ApisController extends AppController
     }
 
     public function sendSmsRequest() {
-            $sms = $this->sendSms('+1 256-567-5764', 'Hey Test, Monkey Party at 6PM. Bring Bananas!');
+            $sms = $this->sendSms(Configure::read('Twilio.toPhone'), 'Hey Test, Monkey Party at 6PM. Bring Bananas!');
             debug($sms); exit;
     }
 }

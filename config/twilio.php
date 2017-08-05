@@ -11,5 +11,6 @@ return [
         'messagingSid' => env('TWILIO_MESSAGING_SID', ''),
         'authToken' => env('TWILIO_AUTH_TOKEN', ''),
         'sendSmsEnabled' => filter_var(env('SEND_SMS_ENABLED', false), FILTER_VALIDATE_BOOLEAN),
+        'toPhone' => env('TO_PHONE', '+1 256-567-5764'),
     ]
 ];
